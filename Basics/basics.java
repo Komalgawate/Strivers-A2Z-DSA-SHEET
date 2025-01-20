@@ -404,3 +404,107 @@ public class basics {
        return list;
     }
 }
+
+
+// //Find the highest/lowest frequency element
+// Example 1:
+// Input: array[] = {10,5,10,15,10,5};
+// Output: 10 15
+// Explanation: The frequency of 10 is 3, 
+// i.e. the highest and the frequency of 15 is 1 
+// i.e. the lowest
+
+// Make a visited array of type boolean.
+// Use the first loop to point to an element of the array.
+// Initialize the variable count to 1.
+// Make that index true in the visited array.
+// Run the second loop, if we find the element then mark the visited index true and increase the count.
+// If the visited index is already true then skip the other steps.
+// After step 5, we will keep a track of the element with the highest frequency and the lowest frequency.
+public class basics {
+    public static void main(String[] args) {
+        int arr[]={1,3,6,6,7,7,7};
+        int n=arr.length;
+        countfreq(arr, n);
+    }
+    public static void countfreq(int arr[],int n){
+        boolean visited[]=new boolean[n];
+        int maxele=0,minele=0,maxfreq=0,minfreq=n;
+        for(int i=0;i<n;i++){
+            if(visited[i]==true)
+            continue;
+            int count=1;
+            for(int j=i+1;j<n;j++){
+                if(arr[i]==arr[j]){
+                    visited[j]=true;
+                    count++;
+                }
+            }
+            if(count>maxfreq){
+                maxele=arr[i];
+                maxfreq=count;
+            }
+            if(count<minfreq){
+                minele=arr[i];
+                minfreq=count;
+            }
+        }
+        System.out.println( "max frequncy is"+maxele);
+        System.out.println( "min frequncy is"+minele);  
+    }
+}
+
+// Optimized approach(Using map):
+
+// We can use a map of value and frequency pair,
+// in which we can easily update the frequency of an element 
+//if it is already present in the map, if it is not present in 
+//the map then insert it in the map with frequency as 1. After 
+//completing all the iterations, we will find the element with the 
+//highest frequency and the element with the lowest frequency.
+// The steps are as follows:
+// Take a HashMap of <Integer, Integer> pair.
+// Use a for loop to iterate the array.
+// If the element is not present in the map 
+//then insert it with frequency 1, otherwise increase 
+//the existing frequency by 1.
+// After visiting the whole array, we will find the 
+//element with the highest frequency and the element with the
+// lowest frequency by iterating the map.
+
+import java.util.HashMap;
+import java.util.Map;
+public class basics {
+
+    public static void main(String[] args) {
+        int arr[]={2,4,2,3,1,2};
+        int n=arr.length;
+        counthighlowfreq(arr, n);
+    }
+    public static void counthighlowfreq(int arr[],int n){
+        HashMap<Integer,Integer> map=new HashMap<>();
+        for(int i=0;i<n;i++){
+            if(map.containsKey(arr[i])){
+                map.put(arr[i], map.get(arr[i])+1);
+            }
+            else{
+                map.put(arr[i], 1);
+            }
+        }
+        int maxfrq=0,minfrq=n,maxele=0,minele=0;
+        for(Map.Entry<Integer,Integer> entry:map.entrySet()){
+            int count=entry.getValue();
+            int element=entry.getKey();
+            if(count>maxfrq){
+                maxele=element;
+                maxfrq=count;
+            }
+            if(count<minfrq){
+                minele=element;
+                minfrq=count;
+            }
+        }
+        System.out.println("high frequncy element"+" "+maxele +" "+"frequncy is"+" "+ maxfrq);
+        System.out.println("low frequncy element"+" "+minele +" "+"frequncy is"+ " "+minfrq);
+    }
+}
