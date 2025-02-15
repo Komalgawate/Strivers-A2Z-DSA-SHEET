@@ -207,11 +207,116 @@ public class Arraysque {
     } 
 }
 // 5.Left Rotate an array by one place
+public class Arraysque {
+
+    public static void main(String[] args) {
+        int arr[]={1,3,2,6,7};
+        int n=arr.length;
+       leftrotate(arr, n);
+       for(int i=0;i<n;i++){
+        System.out.print(arr[i]+" ");
+       }
+    }
+    public static void leftrotate(int arr[],int n){
+        int temp=arr[0];
+        for(int i=1;i<n;i++){
+            arr[i-1]=arr[i];
+        }
+        arr[n-1]=temp;
+    }
+}
 
 // 6.Left rotate an array by D places
+//optimized Time complexity O(d)+O(n-d)+O(n)=O(2n)
+public class Arraysque {
 
+    public static void main(String[] args) {
+        int arr[]={1,3,4,5,7,8};
+        int n=arr.length;
+        int d=3;
+        rotatearr(arr, n, d);
+        for(int i=0;i<n;i++){
+            System.out.print(arr[i]+" ");
+        }
+        
+    }
+    public static void rotatearr(int arr[],int n,int d){
+        d=d%n;
+        reverse(arr, 0, n-1-d);
+        reverse(arr, n-d, n-1);
+        reverse(arr, 0, n-1);
+    }
+    public static void reverse(int arr[],int start,int end){
+        while (start<=end) 
+     {
+        int temp=arr[start];
+        arr[start]=arr[end];
+        arr[end]=temp;
+        start++;
+        end--;
+      }
+    }
+}
 // 7.Move Zeros to end
+//brute force approach
+import java.util.ArrayList;
 
+public class Arraysque {
+
+    public static void main(String[] args) {
+      int arr[]={2,1,0,8,3,0};
+      int n=arr.length;
+      movezero(arr, n);
+      for(int i=0;i<arr.length;i++){
+        System.out.print(arr[i]);
+      }
+    }
+    public static void movezero(int arr[],int n){
+      ArrayList<Integer> temp=new ArrayList<>();
+      for(int i=0;i<n;i++){
+        if(arr[i]!=0){
+         temp.add(arr[i]);
+        }
+      }
+      for(int i=0;i<temp.size();i++){
+          arr[i]=temp.get(i);
+      }
+      int nz=temp.size();
+      for(int i=nz;i<n;i++){
+        arr[i]=0;
+      }
+    }
+}
+
+//optimize approach
+public class Arraysque {
+
+  public static void main(String[] args) {
+    int nums[]={3,7,0,3,0,1,2};
+    movezeros(nums, nums.length);
+    for(int i=0;i<nums.length;i++){
+      System.out.print(nums[i]+" ");
+    }
+  }
+  public static void movezeros(int nums[],int n){
+    int j=-1;
+    for(int i=0;i<n;i++){
+      if(nums[i]==0){
+        j=i;
+        break;
+      }
+    }
+   if(j==-1) return;
+    for(int i=j+1;i<n;i++){
+      if(nums[i]!=0){
+        int temp=nums[i];
+        nums[i]=nums[j];
+        nums[j]=temp;
+        j++;
+      }
+    }
+  }
+}
 //8. Linear Search
 
 //9. Find the Union
@@ -253,30 +358,30 @@ public class Arraysque {
 
 // 27.Print the matrix in spiral manner
 
-// 28Count subarrays with given sum
+// 28.Count subarrays with given sum
 
 // Hard
 
-// Pascal's Triangle
+//29.Pascal's Triangle
 
-// Majority Element (n/3 times)
+//30.Majority Element (n/3 times)
 
-// 3-Sum Problem
+//31.3-Sum Problem
 
-// 4-Sum Problem
+//32.4-Sum Problem
 
-// Largest Subarray with 0 Sum
+//33.Largest Subarray with 0 Sum
 
-// Count number of subarrays with given xor K
+//34.Count number of subarrays with given xor K
 
-// Merge Overlapping Subintervals
+//35.Merge Overlapping Subintervals
 
-// Merge two sorted arrays without extra space
+//36.Merge two sorted arrays without extra space
 
-// Find the repeating and missing number
+//37.Find the repeating and missing number
 
-// Count Inversions
+//38.Count Inversions
 
-// Reverse Pairs
+//39.Reverse Pairs
 
-// Maximum Product Subarray
+40.Maximum Product Subarray
