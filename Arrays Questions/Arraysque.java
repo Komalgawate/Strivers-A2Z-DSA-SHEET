@@ -59,7 +59,7 @@ public class Arraysque {
 }
 //better approach
  public class Arraysque {
- 
+
     public static void main(String[] args) {
         int arr[]={2,1,4,8,7,8};
         findlarge(arr, arr.length);
@@ -238,7 +238,7 @@ public class Arraysque {
         for(int i=0;i<n;i++){
             System.out.print(arr[i]+" ");
         }
-        
+
     }
     public static void rotatearr(int arr[],int n,int d){
         d=d%n;
@@ -317,71 +317,240 @@ public class Arraysque {
     }
   }
 }
+
 //8. Linear Search
+public class Arraysque {
+
+  public static void main(String[] args) {
+    int arr[]={4,6,2,8,0};
+    System.out.println(linear(arr, 8));
+  }
+  public static int linear(int arr[],int num){
+    for(int i=0;i<arr.length;i++){
+      if(arr[i]==num){
+        return i;
+      }
+    }
+    return -1;
+  }
+}
 
 //9. Find the Union
+//brute force approach
+import java.util.*;
+public class Arraysque {
 
-// 10.Find missing number in an array
+    public static void main(String[] args) {
+        int arr1[]={1,2,3,4,5};
+        int arr2[]={1,2,3,4,5,6};
+        int m=arr1.length;
+        int n=arr2.length;
+        ArrayList<Integer> union=findunion(arr1, arr2, n, m);
+        System.out.println("the elements of the union array");
+        for(int val:union){
+            System.out.print(val+" ");
+        }
+    }
+    public static ArrayList<Integer> findunion(int arr1[],int arr2[],int n,int m){
+        HashSet <Integer> s=new HashSet<>();
+        ArrayList<Integer> union=new ArrayList<>();
+        for(int i=0;i<m;i++){
+            s.add(arr1[i]);
+        }
+        for(int i=0;i<n;i++){
+            s.add(arr2[i]);
+        }
+        for(int it:s){
+            union.add(it);
+        }
+        return union;
+    }
+}
+//optimized approach
 
-// 11.Maximum Consecutive One
+import java.util.ArrayList;
 
-// 12.Find the number that appears once, and other numbers twice.
+public class Arraysque {
 
-// 13.Longest subarray with given sum K(positives)
+    public static void main(String[] args) {
+        int arr1[] = { 1, 2, 3, 4, 5 };
+        int arr2[] = { 1, 2, 3, 4, 5, 6 };
+        int n = arr1.length;
+        int m = arr2.length;
+        ArrayList<Integer> Union = findunion(arr1, arr2, n, m);
+        System.out.println("The union of two arrays");
+        for (int val : Union) {
+            System.out.print(val + " ");
+        }
+    }
+    public static ArrayList<Integer> findunion(int arr1[], int arr2[], int n, int m) {
+        int i = 0, j = 0;
+        ArrayList<Integer> Union = new ArrayList<>();
+        while (i < n && j < m) 
+        {
+            if (arr1[i] <= arr2[j]) 
+            {
+                if (Union.size() == 0 || Union.get(Union.size() - 1) != arr1[i])
+                    Union.add(arr1[i]);
+                i++;
+            } 
+            else 
+            {
+                if (Union.size() == 0 || Union.get(Union.size() - 1) != arr2[j])
+                    Union.add(arr2[j]);
+                j++;
 
-// 14.Longest subarray with sum K (Positives + Negatives)public class Arraysque {Lec 2: Medium
+            }
+        }
+        while (i < n) 
+        {
+            if (Union.get(Union.size() - 1) != arr1[i])
+                Union.add(arr1[i]);
+            i++;
+        }
+        while (j < m) 
+        {
+            if (Union.get(Union.size() - 1) != arr2[j])
+                Union.add(arr2[j]);
+            j++;
+        }
+        return Union;
+    }
+}
 
-//Medium
-// 15.2Sum Problem
+//intersection of two arrays
 
-// 16.Sort an array of 0's 1's and 2's
+import java.util.ArrayList;
 
-// 17.Majority Element (>n/2 times)
+public class Arraysque {
 
-// 18.Kadane's Algorithm, maximum subarray sum
+    public static void main(String[] args) {
+        int arr1[]={1,2,2,3,4,5,6};
+        int arr2[]={1,2,2,4,6,7,8};
+        int n=arr1.length;
+        int m=arr2.length;
+        ArrayList<Integer> list=findintersect(arr1, arr2, n, m);
+        System.out.println("intersection between two arrays");
+        for(int val:list){
+           System.out.print(val+" ");
+        }
+    }
+    public static ArrayList<Integer> findintersect(int arr1[],int arr2[],int n,int m){
+       ArrayList<Integer> list=new ArrayList<>();
+       int visited[]=new int [m];
+       for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            if(arr1[i]==arr2[j] && visited[j]==0){
+              list.add(arr1[i]);
+              visited[j]=1;
+              break;
+            }
+            if(arr2[j]>arr1[i]) break;
+        }
+       }
+       return list;
+    }
+}
 
-//19. Print subarray with maximum subarray sum (extended version of above problem)
+//optimized approach
+import java.util.*;
+public class Arraysque {
 
-//20. Stock Buy and Sell
+    public static void main(String[] args) {
+        int arr1[]={1,2,2,3,4,5,6};
+        int arr2[]={1,2,2,4,6,7,8};
+        int n=arr1.length;
+        int m=arr2.length;
+        ArrayList<Integer> list=Find_Intersect(arr1, arr2, n, m);
+        System.out.println("intersection between two arrays");
+        for(int val:list){
+           System.out.print(val+" ");
+        }
+    }
+    public static ArrayList<Integer> Find_Intersect(int arr1[],int arr2[],int n,int m){
+        int i=0,j=0;
+        ArrayList<Integer> list=new ArrayList<>();
+        while (i<n && j<n) {
+            if(arr1[i]<arr2[j]){
+                i++;
+            }
+            else if(arr1[i]<arr2[j]){
+                j++;
+            }
+            else{
+              if(list.isEmpty()||list.get(list.size()-1)!=arr1[i]){
+                list.add(arr1[i]);
+              }
+              i++;
+              j++;
+            }
+        }
+        return list;
+    }
+}
+// // 10.Find missing number in an array
 
-// 21.Rearrange the array in alternating positive and negative items
+// // 11.Maximum Consecutive One
 
-// 22.Next Permutation
+// // 12.Find the number that appears once, and other numbers twice.
 
-// 23.Leaders in an Array problem
+// // 13.Longest subarray with given sum K(positives)
 
-//24. Longest Consecutive Sequence in an Array
+// // 14.Longest subarray with sum K (Positives + Negatives)public class
+// Arraysque {Lec 2: Medium
 
-//25. Set Matrix Zeros
+// //Medium
+// // 15.2Sum Problem
 
-// 26.Rotate Matrix by 90 degrees
+// // 16.Sort an array of 0's 1's and 2's
 
-// 27.Print the matrix in spiral manner
+// // 17.Majority Element (>n/2 times)
 
-// 28.Count subarrays with given sum
+// // 18.Kadane's Algorithm, maximum subarray sum
 
-// Hard
+// //19. Print subarray with maximum subarray sum (extended version of above
+// problem)
 
-//29.Pascal's Triangle
+// //20. Stock Buy and Sell
 
-//30.Majority Element (n/3 times)
+// // 21.Rearrange the array in alternating positive and negative items
 
-//31.3-Sum Problem
+// // 22.Next Permutation
 
-//32.4-Sum Problem
+// // 23.Leaders in an Array problem
 
-//33.Largest Subarray with 0 Sum
+// //24. Longest Consecutive Sequence in an Array
 
-//34.Count number of subarrays with given xor K
+// //25. Set Matrix Zeros
 
-//35.Merge Overlapping Subintervals
+// // 26.Rotate Matrix by 90 degrees
 
-//36.Merge two sorted arrays without extra space
+// // 27.Print the matrix in spiral manner
 
-//37.Find the repeating and missing number
+// // 28.Count subarrays with given sum
 
-//38.Count Inversions
+// // Hard
 
-//39.Reverse Pairs
+// //29.Pascal's Triangle
 
-40.Maximum Product Subarray
+// //30.Majority Element (n/3 times)
+
+// //31.3-Sum Problem
+
+// //32.4-Sum Problem
+
+// //33.Largest Subarray with 0 Sum
+
+// //34.Count number of subarrays with given xor K
+
+// //35.Merge Overlapping Subintervals
+
+// //36.Merge two sorted arrays without extra space
+
+// //37.Find the repeating and missing number
+
+// //38.Count Inversions
+
+// //39.Reverse Pairs
+
+// 40.Maximum Product Subarray
