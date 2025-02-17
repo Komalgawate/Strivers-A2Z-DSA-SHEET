@@ -16,6 +16,7 @@ public static void main(String[] args) {
     System.out.println("largest ele is "+arr[n-1]);
  }
 }
+
 //optimized
 public class Arraysque {
     public static void main(String[] args) {
@@ -33,6 +34,8 @@ public class Arraysque {
        return largest;
   }
  }
+
+
 //2. Second Largest Element in an Array without sorting
 //brute force approach
 
@@ -57,6 +60,8 @@ public class Arraysque {
         System.out.println("second largest is "+s_largest);
     }
 }
+
+
 //better approach
  public class Arraysque {
 
@@ -81,6 +86,8 @@ public class Arraysque {
         System.out.println("second largest is "+s_largest);
     }
  }
+
+
 //optimized approach
 public class Arraysque {
 
@@ -106,6 +113,7 @@ public class Arraysque {
         return s_largest;
     }
 }
+
 //second small
 public class Arraysque {
 
@@ -149,6 +157,7 @@ public class Arraysque {
         return true;
     }
 }
+
 // 4.Remove duplicates from Sorted array
 //brute force approach
 //Declare a HashSet.
@@ -181,6 +190,7 @@ public class Arraysque {
        return k;
     }
 }
+
 //optimized approah
 // take a variable i as 0;
 // Use a for loop by using a variable ‘j’ from 1 to length of the array.
@@ -206,6 +216,8 @@ public class Arraysque {
         return i+1;
     } 
 }
+
+
 // 5.Left Rotate an array by one place
 public class Arraysque {
 
@@ -257,6 +269,8 @@ public class Arraysque {
       }
     }
 }
+
+
 // 7.Move Zeros to end
 //brute force approach
 import java.util.ArrayList;
@@ -366,10 +380,9 @@ public class Arraysque {
         return union;
     }
 }
+
 //optimized approach
-
 import java.util.ArrayList;
-
 public class Arraysque {
 
     public static void main(String[] args) {
@@ -488,6 +501,7 @@ public class Arraysque {
         return list;
     }
 }
+
 // 10.Find missing number in an array
 //brute force approach
 public class Arraysque {
@@ -511,6 +525,7 @@ public class Arraysque {
         return -1;
     }
 }
+
 //Better approach
 public class Arraysque {
 
@@ -531,6 +546,7 @@ public class Arraysque {
       return -1;
     }
 }
+
 //optimized approach 1
 public class Arraysque {
 
@@ -547,6 +563,7 @@ public class Arraysque {
         return sum-s;
     }
 }
+
 //optimized approach 2
 public class Arraysque {
     public static void main(String[] args) {
@@ -563,7 +580,8 @@ public class Arraysque {
         return (xor1 ^ xor2);
     }
 }
-// // 11.Maximum Consecutive One
+
+ // 11.Maximum Consecutive One
 
 public class Arraysque {
 
@@ -586,6 +604,8 @@ public class Arraysque {
         return maxi;
     }
 }
+
+
 // 12.Find the number that appears once, and other numbers twice.
 // Example 1: Input Format: arr[] = {2,2,1} Result: 1
 //brute force approach
@@ -624,6 +644,8 @@ public class Arraysque {
         return xor;
     }
 }
+
+
 // 13.Longest subarray with given sum K(positives)
 //brute force approach
 public class Arraysque {
@@ -645,6 +667,7 @@ public class Arraysque {
         return len;
     }
 }
+
 // 14.Longest subarray with sum K (Positives elements)public class Arraysque 
 public class Arraysque {
     public static void main(String[] args) {
@@ -672,8 +695,8 @@ public class Arraysque {
         return maxele;
     }
 }
-//for positive and negative elemets using hashing
 
+//for positive and negative elemets using hashing
 import java.util.HashMap;
 
 public class Arraysque {
@@ -702,10 +725,125 @@ public class Arraysque {
         return maxele;
     }
 }
+
+
 //Medium
 // 15.2Sum Problem
+// N = 5, arr[] = {2,6,5,8,11}, target = 14 Result:[1, 3]
+public class Arraysque {
+
+    public static void main(String[] args) {
+        int arr[]={2,6,5,8,11};
+        int ans[]=twosum(arr, 14);
+        System.out.println("ist variant "+ans[0]+" "+"second variant "+ans[1]+" ");
+    }
+    public static int[] twosum(int arr[],int target){
+        int n=arr.length;
+        int result[]=new int[2];
+        result[0]=result[1]=-1;
+        for(int i=0;i<n;i++){
+           for(int j=i+1;j<n;j++){
+            if(arr[i]+arr[j]==target){
+              result[0]=i;
+              result[1]=j;
+              return result;
+            }
+           }
+        }
+        return result;
+    }
+}
+
+//optimized approach using two pointer approach
+import java.util.*;
+public class Arraysque {
+
+    public static void main(String[] args) {
+        int arr[]={2,6,5,8,11};
+        System.out.println(twosum(arr, 14, arr.length));
+    }
+    public static boolean twosum(int arr[],int target,int n){
+        Arrays.sort(arr);
+        int left=0;
+        int right=n-1;
+
+        while (left<right) {
+            int sum=arr[left]+arr[right];
+            if(sum==target){
+              return true;
+            }
+            else if(sum<target)
+              {
+                left++;
+              }
+              else{
+                right--;
+              }
+        }
+        return false;
+    }
+}
+
 
 // 16.Sort an array of 0's 1's and 2's
+//brute force approach
+import java.util.*;
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={1,0,0,2,1,0,2};
+        int n=arr.length;
+        sortarray(arr, n);
+        for(int i=0;i<n;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public static void sortarray(int arr[] ,int n){
+        int cnt0=0,cnt1=0,cnt2=0;
+         for(int i=0;i<n;i++){
+            if(arr[i]==0) cnt0++;
+            else if(arr[i]==1) cnt1++;
+            else cnt2++;
+         }
+         for(int i=0;i<cnt0;i++) arr[i]=0;
+         for(int i=cnt0;i<cnt0+cnt1;i++) arr[i]=1;
+         for(int i=cnt0+cnt1;i<n;i++) arr[i]=2;
+    }
+}
+
+
+//optimized approach
+public class Arraysque {
+   public static void main(String[] args) {
+    int arr[]={0,1,0,0,2,1,2};
+    int n=arr.length;
+    sortarray(arr, n);
+    for(int i=0;i<n;i++){
+        System.out.print(arr[i]+" ");
+    }
+   }
+    public static void sortarray(int arr[],int n){
+        int mid=0, low=0, high=n-1;
+        while (mid<=high) {
+            if(arr[mid]==0){
+               int temp=arr[low];
+               arr[low]=arr[mid];
+               arr[mid]=temp;
+               low++;
+               mid++;
+            }
+            else if(arr[mid]==1){
+                mid++;
+            }else{
+                int temp=arr[high];
+                arr[high]=arr[mid];
+                arr[mid]=temp;
+                high--;
+            }
+        }
+
+    } 
+}
+
 
 // 17.Majority Element (>n/2 times)
 
