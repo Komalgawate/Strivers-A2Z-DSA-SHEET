@@ -586,65 +586,173 @@ public class Arraysque {
         return maxi;
     }
 }
-// // 12.Find the number that appears once, and other numbers twice.
+// 12.Find the number that appears once, and other numbers twice.
+// Example 1: Input Format: arr[] = {2,2,1} Result: 1
+//brute force approach
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={1,2,2,3,3};
+        System.out.println(findnum(arr, arr.length));
+    }
+    public static int findnum(int arr[],int n){
+        int cnt=0;
+        for(int i=0;i<n;i++){
+            int num=arr[i];
+            for(int j=0;j<n;j++){
+                if(arr[j]==num){
+                    cnt++;
+                }
+            }
+            if(cnt==1) return num;
+        }
+        return -1;
+    }
+}
 
-// // 13.Longest subarray with given sum K(positives)
+//optimized approach
+public class Arraysque {
 
-// // 14.Longest subarray with sum K (Positives + Negatives)public class
-// Arraysque {Lec 2: Medium
+    public static void main(String[] args) {
+        int arr[]={1,1,2,3,3,4,4};
+        System.out.println(findnum(arr, arr.length));
+    }
+    public static int findnum(int arr[],int n){
+        int xor=0;
+        for(int i=0;i<n;i++){
+            xor^=arr[i];
+        }
+        return xor;
+    }
+}
+// 13.Longest subarray with given sum K(positives)
+//brute force approach
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={1,2,3,3,1,1,1,1,2,6};
+        System.out.println(sumsubarray(arr, 6, arr.length));
+    }
+    public static int sumsubarray(int arr[],long sum,int n){
 
-// //Medium
-// // 15.2Sum Problem
+        int len=0;
+        for(int i=0;i<n;i++){
+            long s=0;
+            for(int j=i;j<n;j++){
+               s+=arr[j];
+                if(s==sum) 
+                   len=Integer.max(len, j-i+1);
+            }
+        }
+        return len;
+    }
+}
+// 14.Longest subarray with sum K (Positives elements)public class Arraysque 
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={-5, 8, -14, 2, 4, 12};
+        System.out.println(findsubsum(arr, -5));
+    }
+    public static int findsubsum(int arr[],long k){
+        int left=0,right=0;
+        int n=arr.length;
+        int maxele=0;
+        long sum=arr[0];
+        while (right<n) {
+            while (left<=right && sum>k) {
+                sum-=arr[left];
+                left++;
+            }
+            if(sum==k){
+                maxele=Integer.max(maxele, right-left+1);
+            }
+            right++;
+            if(right<n){
+                sum+=arr[right];
+            }
+        }
+        return maxele;
+    }
+}
+//for positive and negative elemets using hashing
 
-// // 16.Sort an array of 0's 1's and 2's
+import java.util.HashMap;
 
-// // 17.Majority Element (>n/2 times)
+public class Arraysque {
 
-// // 18.Kadane's Algorithm, maximum subarray sum
+    public static void main(String[] args) {
+        int arr[]={-5, 8, -14, 2, 4, 12};
+       System.out.println(findsum(arr, -5));
+    }
+    public static int findsum(int arr[],int k){
+        HashMap<Long,Integer> map=new HashMap<>();
+        int maxele=0;
+        long prefixsum=0;
+        int n=arr.length;
+        for(int i=0;i<n;i++){
+         prefixsum+=arr[i];
+         if(prefixsum==k){
+            maxele=i+1;
+         }
+         if(map.containsKey(prefixsum-k)){
+            maxele=Math.max(maxele,i-map.get(prefixsum-k));
+         }
+         if(!map.containsKey(prefixsum)){
+            map.put(prefixsum, i);
+         }
+        }
+        return maxele;
+    }
+}
+//Medium
+// 15.2Sum Problem
 
-// //19. Print subarray with maximum subarray sum (extended version of above
-// problem)
+// 16.Sort an array of 0's 1's and 2's
 
-// //20. Stock Buy and Sell
+// 17.Majority Element (>n/2 times)
 
-// // 21.Rearrange the array in alternating positive and negative items
+// 18.Kadane's Algorithm, maximum subarray sum
 
-// // 22.Next Permutation
+//19. Print subarray with maximum subarray sum (extended version of above problem)
 
-// // 23.Leaders in an Array problem
+//20. Stock Buy and Sell
 
-// //24. Longest Consecutive Sequence in an Array
+// 21.Rearrange the array in alternating positive and negative items
 
-// //25. Set Matrix Zeros
+// 22.Next Permutation
 
-// // 26.Rotate Matrix by 90 degrees
+// 23.Leaders in an Array problem
 
-// // 27.Print the matrix in spiral manner
+//24. Longest Consecutive Sequence in an Array
 
-// // 28.Count subarrays with given sum
+//25. Set Matrix Zeros
 
-// // Hard
+// 26.Rotate Matrix by 90 degrees
 
-// //29.Pascal's Triangle
+// 27.Print the matrix in spiral manner
 
-// //30.Majority Element (n/3 times)
+// 28.Count subarrays with given sum
 
-// //31.3-Sum Problem
+// Hard
 
-// //32.4-Sum Problem
+//29.Pascal's Triangle
 
-// //33.Largest Subarray with 0 Sum
+//30.Majority Element (n/3 times)
 
-// //34.Count number of subarrays with given xor K
+//31.3-Sum Problem
 
-// //35.Merge Overlapping Subintervals
+//32.4-Sum Problem
 
-// //36.Merge two sorted arrays without extra space
+//33.Largest Subarray with 0 Sum
 
-// //37.Find the repeating and missing number
+//34.Count number of subarrays with given xor K
 
-// //38.Count Inversions
+//35.Merge Overlapping Subintervals
 
-// //39.Reverse Pairs
+//36.Merge two sorted arrays without extra space
 
-// 40.Maximum Product Subarray
+//37.Find the repeating and missing number
+
+//38.Count Inversions
+
+//39.Reverse Pairs
+
+//40.Maximum Product Subarray
