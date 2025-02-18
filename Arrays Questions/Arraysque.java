@@ -846,51 +846,200 @@ public class Arraysque {
 
 
 // 17.Majority Element (>n/2 times)
+Example 2:Input Format:N = 7, nums[] = {2,2,1,1,1,2,2}Result: 2
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={2,2,1,1,1,2,2};
+        System.out.println(majority(arr, arr.length));
+    }
+    public static int majority(int arr[],int n){
+        for(int i=0;i<n;i++){
+            int cnt=0;
+            for(int j=0;j<n;j++){
+    
+                if(arr[i]==arr[j]){
+                  cnt++;
+                }
+            }
+            if(cnt>n/2) return arr[i];
+        }
+        return -1;
+    }
+}
 
-// 18.Kadane's Algorithm, maximum subarray sum
+//optimized approach
+public class Arraysque {
 
-//19. Print subarray with maximum subarray sum (extended version of above problem)
+    public static void main(String[] args) {
+        int arr[]={1,1,2,3,4,1,1};
+        System.out.println(majority(arr, arr.length));
+    }
+    public static int majority(int arr[],int n){
+        int cnt=0;
+        int ele=0;
+        for(int i=0;i<n;i++){
+           if(cnt==0){
+            cnt=1;
+            ele=arr[i];
+           }
+           else if(arr[i]==ele) cnt++;
+           else cnt--;   
+        }
+        
+        //checking if the stored element
+        // is the majority element:
+        int cnt1=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]==ele){
+                cnt1++;
+            }
+        }
+        if(cnt1>(n/2)) return ele;
+          return -1;
+    }
+}
+// // 18.Kadane's Algorithm, maximum subarray sum
+//brute force approach
+public class Arraysque {
 
-//20. Stock Buy and Sell
+    public static void main(String[] args) {
+        int arr[]={-2,1,-3,4,-1,2,1,-5,4};
+        System.out.println(maxsubsum(arr, arr.length));
+    }
+    public static int maxsubsum(int arr[],int n){
+        int maxi=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            int sum=0;
+            for(int j=i;j<n;j++){
+                sum+=arr[j];
+                maxi=Math.max(maxi, sum);
+            }
+        }
+        return maxi;
+    }
+}
 
-// 21.Rearrange the array in alternating positive and negative items
+//optimized 
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={-2,1,-3,4,-1,2,1,-5,4};
+       System.out.println(maxsum(arr, arr.length));
+    }
+    public static int maxsum(int arr[],int n){
+        int sum=0;
+        int maxi=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(sum>maxi){
+                maxi=sum;
+            }
+            if(sum<0){
+                sum=0;
+            }
+        }
+        return maxi;
+    }
+}
 
-// 22.Next Permutation
+// //19. Stock Buy and Sell
+public class Arraysque {
 
-// 23.Leaders in an Array problem
+    public static void main(String[] args) {
+        int arr[]={7,1,5,3,6,4};
+        System.out.println(maxpro(arr, arr.length));
+    }
+    public static int maxpro(int arr[],int n){
+        int maxpro=0;
+        for(int i=0;i<n;i++){
+            for(int j=i+1;j<n;j++){
+                if(arr[j]>arr[i]){
+                    maxpro=Math.max(maxpro,arr[j]-arr[i]);
+                }
 
-//24. Longest Consecutive Sequence in an Array
+            }
+        }
+        return maxpro;
+    }
+}
 
-//25. Set Matrix Zeros
+//optimized approach
+public class Arraysque {
 
-// 26.Rotate Matrix by 90 degrees
+    public static void main(String[] args) {
+        int arr[]={7,1,5,3,6,4};
+        System.out.println(maxpro(arr, arr.length));
+    }
+    public static int maxpro(int arr[],int n){
+        int minprice=Integer.MAX_VALUE;
+        int maxpro=0;
+        for(int i=0;i<n;i++){
+            minprice=Math.min(arr[i], minprice);
+            maxpro=Math.max(maxpro,arr[i]-minprice);
+        }
+        return maxpro;
+    }
+}
+// // 20.Rearrange the array in alternating positive and negative items
+//Input:arr[] = {1,2,-4,-5}, N = 4Output:1 -4 2 -5
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[] = {1,2,-4,-5};
+        int ans2[]=rearrangearr(arr, arr.length);
+        for(int i=0;i<ans2.length;i++){
+            System.out.print(ans2[i]+" ");
+        }
+    }
+    public static int[] rearrangearr(int arr[],int n){
+        int positiveind=0,negativeind=1;
+        int ans[]=new int[n];
+        for(int i=0;i<n;i++){
+            if(arr[i]<0){
+              ans[negativeind]=arr[i];
+              negativeind+=2;
+            }else{
+                ans[positiveind]=arr[i];
+                positiveind+=2;
+            }
+        }
+        return ans;
+    }
+}
+// // 21.Next Permutation
 
-// 27.Print the matrix in spiral manner
+// // 22.Leaders in an Array problem
 
-// 28.Count subarrays with given sum
+// //23. Longest Consecutive Sequence in an Array
 
-// Hard
+// //24. Set Matrix Zeros
 
-//29.Pascal's Triangle
+// // 25.Rotate Matrix by 90 degrees
 
-//30.Majority Element (n/3 times)
+// // 26.Print the matrix in spiral manner
 
-//31.3-Sum Problem
+// // 27.Count subarrays with given sum
 
-//32.4-Sum Problem
+// // Hard
 
-//33.Largest Subarray with 0 Sum
+// //28.Pascal's Triangle
 
-//34.Count number of subarrays with given xor K
+// //29.Majority Element (n/3 times)
 
-//35.Merge Overlapping Subintervals
+// //30.3-Sum Problem
 
-//36.Merge two sorted arrays without extra space
+// //31.4-Sum Problem
 
-//37.Find the repeating and missing number
+// //32.Largest Subarray with 0 Sum
 
-//38.Count Inversions
+// //33.Count number of subarrays with given xor K
 
-//39.Reverse Pairs
+// //34.Merge Overlapping Subintervals
 
-//40.Maximum Product Subarray
+// //35.Merge two sorted arrays without extra space
+
+// //36.Find the repeating and missing number
+
+// //37.Count Inversions
+
+// //38.Reverse Pairs
+
+// //39.Maximum Product Subarray
