@@ -1004,42 +1004,142 @@ public class Arraysque {
         return ans;
     }
 }
-// // 21.Next Permutation
 
-// // 22.Leaders in an Array problem
 
-// //23. Longest Consecutive Sequence in an Array
+// 21.Next Permutation
 
-// //24. Set Matrix Zeros
+import java.util.Arrays;
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={1,2,3};
+        nextpermutation(arr, arr.length);
+        for(int i=0;i<arr.length;i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public static void nextpermutation(int arr[],int n){
+        //find the pivot
+        int pivot=-1;
+        for(int i=n-2;i>=0;i--){
+            if(arr[i]<arr[i+1]){
+                pivot=i;
+                break;
+            }
+        }
+        if(pivot==-1){
+            Arrays.sort(arr);
+            return;
+        }
+    //2nd step to find the rightmost ele of that pivot
+    for(int i=n-1;i>pivot;i--){
+        if(arr[i]>arr[pivot]){
+            int temp=arr[i];
+            arr[i]=arr[pivot];
+            arr[pivot]=temp;
+            break;
+        }
+      }
+      //reverse the array pivot+1 to n-1;
+     int i=pivot+1;
+     int j=n-1;
+     while (i<j) {
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+        i++;
+        j--;
+     }
+    }
+}
 
-// // 25.Rotate Matrix by 90 degrees
 
-// // 26.Print the matrix in spiral manner
+// 22.Leaders in an Array problem
+brute force approach [4, 7, 1, 0] Output:7 1 0
+import java.util.ArrayList;
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={4, 7, 1, 0};
+        ArrayList<Integer> ans2=leaders(arr, arr.length);
+        for(int num:ans2){
+            System.out.print(num+" ");
+        }
+    }
+    public static ArrayList<Integer> leaders(int arr[],int n){
+        ArrayList<Integer> ans=new ArrayList<>();
+      for(int i=0;i<n;i++){
+        boolean leader=true;
+        for(int j=i+1;j<n;j++){
+            if(arr[j]>arr[i]){
+                leader=false;
+                break;
+            }
+        }
+        if(leader==true) ans.add(arr[i]);
+      }
+      return ans;
+    }
+}
 
-// // 27.Count subarrays with given sum
 
-// // Hard
+//optimized approach
 
-// //28.Pascal's Triangle
+import java.util.ArrayList;
+import java.util.Collections;
 
-// //29.Majority Element (n/3 times)
+public class Arraysque {
 
-// //30.3-Sum Problem
+    public static void main(String[] args) {
+        int arr[]={4, 7, 1, 0};
+        ArrayList<Integer> ans2=leaders(arr, arr.length);
+        for(int num:ans2){
+          System.out.print(num+" ");
+        }
+    }
+    public static ArrayList<Integer> leaders(int arr[],int n){
+         ArrayList<Integer> ans=new ArrayList<>();
+        int maxi=Integer.MIN_VALUE;
+        for(int i=n-1;i>=0;i--){
+            if(arr[i]>maxi){
+                ans.add(arr[i]);
+                maxi=arr[i];
+            }
+        }
+        Collections.reverse(ans);
+        return ans;
+    }
+}
+//23. Longest Consecutive Sequence in an Array
 
-// //31.4-Sum Problem
+//24. Set Matrix Zeros
 
-// //32.Largest Subarray with 0 Sum
+// 25.Rotate Matrix by 90 degrees
 
-// //33.Count number of subarrays with given xor K
+// 26.Print the matrix in spiral manner
 
-// //34.Merge Overlapping Subintervals
+// 27.Count subarrays with given sum
 
-// //35.Merge two sorted arrays without extra space
+// Hard
 
-// //36.Find the repeating and missing number
+//28.Pascal's Triangle
 
-// //37.Count Inversions
+//29.Majority Element (n/3 times)
 
-// //38.Reverse Pairs
+//30.3-Sum Problem
 
-// //39.Maximum Product Subarray
+//31.4-Sum Problem
+
+//32.Largest Subarray with 0 Sum
+
+//33.Count number of subarrays with given xor K
+
+//34.Merge Overlapping Subintervals
+
+//35.Merge two sorted arrays without extra space
+
+//36.Find the repeating and missing number
+
+//37.Count Inversions
+
+//38.Reverse Pairs
+
+//39.Maximum Product Subarray
