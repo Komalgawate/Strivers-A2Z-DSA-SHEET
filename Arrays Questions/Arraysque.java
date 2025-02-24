@@ -1108,38 +1108,154 @@ public class Arraysque {
         return ans;
     }
 }
-//23. Longest Consecutive Sequence in an Array
 
-//24. Set Matrix Zeros
 
-// 25.Rotate Matrix by 90 degrees
+// //23. Longest Consecutive Sequence in an Array
+//better approach
+// Example 1: Input: [100, 200, 1, 3, 2, 4] Output:4
+// The longest consecutive subsequence is 1, 2, 3, and 4.
+// import java.util.*;
+public class Arraysque {
+    public static void main(String[] args) {
+        int arr[]={100, 200, 1, 3, 2, 4};
+        System.out.println(longestcon(arr, arr.length));
+    }
+    public static int longestcon(int arr[],int n){
+        if(arr.length==0) return 0;
+        Arrays.sort(arr);
+        int longest=1,currcount=0,lastsmall=Integer.MIN_VALUE;
+        for(int i=0;i<n;i++){
+            if(arr[i]-1==lastsmall){
+                currcount+=1;
+                lastsmall=arr[i];
+            }else if(arr[i]!=lastsmall){
+                currcount=1;
+                lastsmall=arr[i];
+            }
+            longest=Math.max(longest,currcount);
+        }
+        return longest;
+    }
+}
 
-// 26.Print the matrix in spiral manner
 
-// 27.Count subarrays with given sum
+// //24. Set Matrix Zeros
+public class Arraysque {
 
-// Hard
+    public static void main(String[] args) {
+        int arr[][]={{1,1,0},{1,1,1},{1,1,0}};
+        int n=arr.length;
+        int m=arr[0].length;
+        setmatrix(arr, n, m);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+              System.out.print(+arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public static void setmatrix(int arr[][],int n,int m){
+        int row[]=new int[n];
+        int col[]=new int[m];
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                if(arr[i][j]==0){
+                    row[i]=1;
+                    col[j]=1;
+                }
+            }
+        }
+        //finally mark all i j=0;
+        for(int i=0;i<n;i++){
+          for(int j=0;j<m;j++){
+            if(row[i]==1 || col[j]==1){
+                arr[i][j]=0;
+            }
+          }
+        }
+    }
+}
 
-//28.Pascal's Triangle
+//optimal approach
+public class Arraysque {
 
-//29.Majority Element (n/3 times)
+    public static void main(String[] args) {
+        int arr[][]={{1,1,1},{1,0,1},{1,1,1}};
+        int n=arr.length;
+        int m=arr[0].length;
+        setmatrix(arr, n,m);
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+                System.out.print(arr[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+    public static void setmatrix(int arr[][],int n,int m){
+        int col0=1;
+        for(int i=0;i<n;i++){
+            for(int j=0;j<m;j++){
+               if(arr[i][j]==0){
+                arr[i][0]=0;
+                if(j!=0)
+                    arr[0][j]=0;
+                else
+                    col0=1;
+                
+               }
 
-//30.3-Sum Problem
+            }
+        }
+        //ignore 0th row and oth col
+        for(int i=1;i<n;i++){
+            for(int j=1;j<m;j++){
+                if(arr[i][j]!=0){
+                    if(arr[0][j]==0||arr[i][0]==0){
+                        arr[i][j]=0;
+                    }
+                }
+            }
+        }
+        if(arr[0][0]==0){
+            for(int j=0;j<m;j++){
+                arr[0][j]=0;
+            }
+        }
+        if(col0==0){
+            for(int i=0;i<n;i++){
+               arr[i][0]=0;
+            }
+        }
+    }
+}
+// // 25.Rotate Matrix by 90 degrees
 
-//31.4-Sum Problem
+// // 26.Print the matrix in spiral manner
 
-//32.Largest Subarray with 0 Sum
+// // 27.Count subarrays with given sum
 
-//33.Count number of subarrays with given xor K
+// // Hard
 
-//34.Merge Overlapping Subintervals
+// //28.Pascal's Triangle
 
-//35.Merge two sorted arrays without extra space
+// //29.Majority Element (n/3 times)
 
-//36.Find the repeating and missing number
+// //30.3-Sum Problem
 
-//37.Count Inversions
+// //31.4-Sum Problem
 
-//38.Reverse Pairs
+// //32.Largest Subarray with 0 Sum
 
-//39.Maximum Product Subarray
+// //33.Count number of subarrays with given xor K
+
+// //34.Merge Overlapping Subintervals
+
+// //35.Merge two sorted arrays without extra space
+
+// //36.Find the repeating and missing number
+
+// //37.Count Inversions
+
+// //38.Reverse Pairs
+
+// //39.Maximum Product Subarray
