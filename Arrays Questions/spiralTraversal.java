@@ -36,21 +36,17 @@ public class spiralTraversal {
             right--;
 
             // Move right to left
-            if (top <= bottom) {
                 for (int i = right; i >= left; i--) {
                     ans.add(arr[bottom][i]);
                 }
                 bottom--;
-            }
 
             // Move bottom to top
-            if (left <= right) {
                 for (int i = bottom; i >= top; i--) {
                     ans.add(arr[i][left]);
                 }
                 left++;
             }
-        }
         return ans;
     }
 }
