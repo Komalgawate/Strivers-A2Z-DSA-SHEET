@@ -109,3 +109,43 @@ public class threesum {
     }
 
 }
+
+//return the closet target sum
+// Input: arr[] = [-1, 2, 2, 4], target = 4
+// Output: 5
+// Explanation: All possible triplets
+// [-1, 2, 2], sum = (-1) + 2 + 2 = 3
+// [-1, 2, 4], sum = (-1) + 2 + 4 = 5
+// [-1, 2, 4], sum = (-1) + 2 + 4 = 5
+// [2, 2, 4], sum = 2 + 2 + 4 = 8
+import java.util.*;
+public class threesum {
+    public static void main(String[] args) {
+        int arr[]={-1, 2, 2, 4};
+        System.out.println(closetssum(arr, 4));
+    }
+    public static int closetssum(int arr[],int target){
+        Arrays.sort(arr);
+        int n=arr.length;
+        int closetsum=Integer.MIN_VALUE;
+        int mindiff=Integer.MAX_VALUE;
+        for(int i=0;i<n;i++){
+            int left=i+1;
+            int right=n-1;
+            while (left<right) {
+                int currsum=arr[i]+arr[left]+arr[right];
+                int diff=Math.abs(currsum-target);
+                if(diff<mindiff || (diff==mindiff && currsum>closetsum)){
+                    closetsum=currsum;
+                    mindiff=diff;
+                }
+                if(currsum<target){
+                    left++;
+                }else{
+                    right--;
+                }
+            }
+        }
+        return closetsum;
+    }
+}
