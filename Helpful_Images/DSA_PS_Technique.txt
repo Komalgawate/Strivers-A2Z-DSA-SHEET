@@ -1,0 +1,52 @@
+In 2025, solving problems fast on Leetcode = Knowing & recognizing the patterns.
+I wish I knew this when I solved 1000+ DSA problems on Leetcode & got a rating of 2021 on Codeforces and 2195 on CodeChef.
+
+Here’s a DSA problem-solving cheat sheet that will help you solve 90-95% of questions that come your way. 
+
+♦ If the Input is an Array or String:
+- Is the array sorted? 
+ - Yes: Use Binary Search or Two Pointers. 
+ - No: Move to the next checks. 
+
+- What is the question asking? 
+ - Number of ways to do something / Max-Min of something: 
+ - If decisions are dependent on each other, use Dynamic Programming. 
+ - If decisions are independent, use Greedy. 
+ - Is something possible?: 
+ - Try Backtracking. 
+
+- Does it involve string manipulation? 
+ - Prefix matching: Use Trie. 
+ - Building strings or finding distances: Use Stack or Monotonic Stack. 
+
+- Is it about finding a specific element? 
+ - Use a Hash Map or Set. 
+
+- Does it involve elements being added/removed in a sliding window fashion? 
+ - Use a Sliding Window or Counting Hash Map. 
+
+- Is the problem about continuously finding the max/min element or removing them? 
+ - Use a Heap or Monotonic Queue. 
+♦ If the Input is a Graph: 
+- Does the question involve finding the shortest path or the fewest steps? 
+ - Yes: Use Breadth-First Search (BFS). 
+ - No: Use Depth-First Search (DFS). 
+
+---
+
+♦ If the Input is a Tree (probably binary): 
+- Does the question involve specific depths/levels? 
+ - Yes: Use Breadth-First Search (BFS). 
+ - No: Use Depth-First Search (DFS). 
+
+---
+
+♦ If the Input is a Linked List: 
+- Does it involve detecting cycles? 
+ - Use Fast and Slow Pointers. 
+- Does it involve reversing or modifications? 
+ - Use a “prev” pointer for reversing. 
+ - Use a “dummy” pointer for maintaining the original head. 
+
+This flow will help you quickly identify the optimal approach for most DSA problems. Save it for your next grind!
+–
