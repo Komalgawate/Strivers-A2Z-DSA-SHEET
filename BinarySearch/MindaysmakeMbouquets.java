@@ -5,42 +5,42 @@
 // Result: 12
 // Explanation: On the 12th the first 4 flowers and the last 3 flowers would have already bloomed. So, we can easily make 2 bouquets, one with the first 3 and another with the last 3 flowers.
 //brute force approach
-// public class MindaysmakeMbouquets {
-//     public static void main(String[] args) {
-//         int arr[]={7, 7, 7, 7, 13, 11, 12, 7};
-//         System.out.println(findminday(arr, 3, 2));
-//     }
-//     public static boolean findpossbokke(int arr[],int day,int m,int k){
-//         int cnt=0,noB=0;
-//         for(int i=0;i<arr.length;i++){
-//             if(arr[i]<=day){
-//                 cnt++;
-//             }else{
-//                 noB+=(cnt/k);
-//                 cnt=0;
-//             }
-//         }
-//         noB+=(cnt/k);
-//         return noB>=m;
-//     }
-//     public static int findminday(int arr[],int m,int k){
-//         long val=(long)m*k;
-//         if(val>arr.length) return -1;
-//         int mini=Integer.MAX_VALUE;
-//         int maxi=Integer.MIN_VALUE;
-//         for(int i=0;i<arr.length;i++){
-//             mini=Math.min(mini,arr[i]);
-//             maxi=Math.max(maxi,arr[i]);
-//         }
-//         for(int i=mini;i<=maxi;i++){
-//             if(findpossbokke(arr,i,m,k))
-//             {
-//                 return i;
-//             }
-//         }
-//         return -1;
-//     }
-// }
+public class MindaysmakeMbouquets {
+    public static void main(String[] args) {
+        int arr[]={7, 7, 7, 7, 13, 11, 12, 7};
+        System.out.println(findminday(arr, 3, 2));
+    }
+    public static boolean findpossbokke(int arr[],int day,int m,int k){
+        int cnt=0,noB=0;
+        for(int i=0;i<arr.length;i++){
+            if(arr[i]<=day){
+                cnt++;
+            }else{
+                noB+=(cnt/k);
+                cnt=0;
+            }
+        }
+        noB+=(cnt/k);
+        return noB>=m;
+    }
+    public static int findminday(int arr[],int m,int k){
+        long val=(long)m*k;
+        if(val>arr.length) return -1;
+        int mini=Integer.MAX_VALUE;
+        int maxi=Integer.MIN_VALUE;
+        for(int i=0;i<arr.length;i++){
+            mini=Math.min(mini,arr[i]);
+            maxi=Math.max(maxi,arr[i]);
+        }
+        for(int i=mini;i<=maxi;i++){
+            if(findpossbokke(arr,i,m,k))
+            {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
 
 //optimized approach using BS
 public class MindaysmakeMbouquets {
